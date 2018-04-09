@@ -290,7 +290,23 @@ solution: ptr_Node new_node = (ptr_Node)malloc(sizeof(Node));
 
 ## git在Ubuntu和Windows上的使用
 ### in Ubuntu
+```
+sudo apt-get install git 
 
+git config --global user.name "username"
+git config --global user.emal "email_id"
+
+set up SSH (To advoid entering username & password every time U need to upload)
+
+#create repository
+git init "Name/in a specify directory"
+cd "Name of the file"
+
+#create a README.md File& add others files U want
+vim README.md
+
+git add "FILE Name" / git add . (add all file in this directory)
+```
 ### in Windows
 > Whereas similar to Ubuntu, lots of stuff need to be installed in the pre-step 
 
