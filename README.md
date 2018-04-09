@@ -306,8 +306,16 @@ cd "Name of the file"
 vim README.md
 
 git add "FILE Name" / git add . (add all file in this directory)
+
+git commit -m "Name"
+
+create a File in Ur github account 
+
+git remote add origin "SSH"
+git push origin master
 ```
 ### in Windows
-> Whereas similar to Ubuntu, lots of stuff need to be installed in the pre-step 
+> Whereas similar to Ubuntu, lots of stuff need to be installed in the pre-step, such as git bash and git desktop.
+> In Windows OS, I need to go to a website to download the stuff I need, which is time-comsuming with no debt.
 
 ## 基于python对oop（oriented-object programming）的初步了解
