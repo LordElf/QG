@@ -319,3 +319,10 @@ git push origin master
 > In Windows OS, I need to go to a website to download the stuff I need, which is time-comsuming with no debt.
 
 ## 基于python对oop（oriented-object programming）的初步了解
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=-DP1i2ZU9gk&t=99s
+" target="_blank"><img src="http://img.youtube.com/vi/-DP1i2ZU9gk&t=99s/0.jpg" 
+alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
+
+
+
+#WEEK 2
