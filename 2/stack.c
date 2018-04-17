@@ -124,8 +124,6 @@ Status LStackLength(LinkStack *s,int *length)    //检测链表长度
 
 Status pushLStack(LinkStack *s,ElemType datas)   //入栈
 {
-	if(NULL == s || NULL == s->top)
-		return ERROR;
 	s->count++;
 	LinkStackPtr p = (LinkStackPtr)malloc(sizeof(StackNode));
 	p->next = s->top;

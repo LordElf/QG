@@ -75,8 +75,10 @@ void manipulateO(void) {
 			case 7:
 				;
 				ElemType* datas = (ElemType* )malloc(sizeof(ElemType));
-				popStack(s, datas) == OK ? printf("OK\n") : printf("ERROR\n");
-				printf("the element just poped out is %d", *datas);
+                int j = popStack(s, datas);
+				j == OK ? printf("OK\n") : printf("ERROR\n");
+				if(j)
+                    printf("the element just poped out is %d", *datas);
 				break;
 			case 8:
 				return;
@@ -126,7 +128,9 @@ void manipulateL(void) {
 			case 7:
 				;
 				ElemType* datas = (ElemType* )malloc(sizeof(ElemType));
-				popLStack(s, datas) == OK ? printf("OK\n") : printf("ERROR\n");
+                int j = popLStack(s, datas);
+				j == OK ? printf("OK\n") : printf("ERROR\n");
+                if(j)
 				printf("the element just poped out is %d", *datas);
 				break;
 			case 8:
