@@ -26,7 +26,8 @@ Status initVaStack(VaStack *s)
 	s->elem = (VaElem *)malloc(BUFFER_SIZE * sizeof(VaElem));
 	if (NULL == s)
 		return ERROR;
-	s->top = -1;
+    s->elem[0] = 0;
+	s->top = 0;
 	return OK;
 }
 
@@ -65,14 +66,12 @@ Status pushOpStack(OpStack *s, OpElem datas)
 
 VaElem popVaStack(VaStack *s) 
 {
-	s->top--;
-	return s->elem[s->top];
+	return s->elem[s->top--];
 }
 
 OpElem popOpStack(OpStack *s)
 {
-	s->top--;
-	return s->elem[s->top];
+	return s->elem[s->top--];
 }
 
 float calculate(float a, float b, char c) {
@@ -104,11 +103,14 @@ Status hasPrecedence(char op1, char op2) {
 
 int main(){
 	char Token[BUFFER_SIZE], *buffer;
+    float a, b;
 	printf("please input the equation you want to calculate\n");
 	printf("use * as a substitude of x and no = at the end\n");
 	fgets(Token, BUFFER_SIZE, stdin);//·ÀÖ¹Òç³ö
+
 	VaStack* vs = (VaStack*)malloc(sizeof(VaStack));
 	OpStack* os = (OpStack*)malloc(sizeof(OpStack));
+
 	initVaStack(vs);
 	initOpStack(os);
 	for (int i = 0, j = 0; Token[i] != '\0'; i++) {
@@ -116,8 +118,11 @@ int main(){
 		//current token is a number, push it to VaStack
 		if (Token[i] >= '0' && Token[i] <= '9'){
             buffer = (char*)malloc(BUFFER_SIZE * sizeof(char));
-            while(i < strlen(Token) && Token[i] >= '0' && Token[i] <= '9')
+            while(i < strlen(Token)-1 && ((Token[i] >= '0' && Token[i] <= '9') || Token[i] == '.'))
                 buffer[j++] = Token[i++];
+            buffer[j] = '\0';
+            j = 0;
+            i--;
             pushVaStack(vs, atof(buffer));
             free(buffer);
                 
@@ -130,8 +135,13 @@ int main(){
 
 		//current token is right parenthesis, calculate the equation in '()'
 		else if (Token[i] == ')') {
-			while (os->elem[os->top] != '(')
-				pushVaStack(vs, calculate(popVaStack(vs), popVaStack(vs), popOpStack(os)));
+			while (os->elem[os->top] != '('){
+			    a = popVaStack(vs);
+                b = popVaStack(vs);
+                pushVaStack(vs, calculate(a, b, popOpStack(os)));
+            }
+        //pop the '('out of the OpStack
+        popOpStack(os);
 		}
 
 		//current token is an operator
@@ -139,16 +149,24 @@ int main(){
 			// While top of Opstack has same or greater precedence to current
 			// token, which is an operator. Apply operator on top of OpStack
 			// to top two elements in values stack
-			while (!isEmptyOpStack(os) && hasPrecedence(Token[i], os->elem[os->top]))
-				pushVaStack(vs, calculate(popVaStack(vs), popVaStack(vs), popOpStack(os)));
+			while (!isEmptyOpStack(os) && hasPrecedence(Token[i], os->elem[os->top]))  {
+                a = popVaStack(vs);
+                b = popVaStack(vs);
+                pushVaStack(vs, calculate(a, b, popOpStack(os)));
+             }
+
 
 			// push the current operator to OpStack
 			pushOpStack(os, Token[i]);
 		}
 	}
 
-	while(!isEmptyOpStack(os))
-		pushVaStack(vs, calculate(popVaStack(vs), popVaStack(vs), popOpStack(os)));
+	while(!isEmptyOpStack(os)){
+            a = popVaStack(vs);
+            b = popVaStack(vs);
+            pushVaStack(vs, calculate(a, b, popOpStack(os)));
+    }
+
 
 	//top of value is the result
 	if (vs->top == 0)
