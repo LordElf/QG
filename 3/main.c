@@ -5,6 +5,7 @@
 
 void M_AQueue();
 void M_LQueue();
+void stop();
 
 int main(){
     int buffer = 1;
@@ -35,6 +36,7 @@ void M_AQueue(){
     AQueue* Q = (AQueue*)malloc(sizeof(AQueue));
     InitAQueue(Q);
     for(;;){
+        stop();
         system("clear");
         printf("implementation of queue");
         printf("\n------------------------\n");
@@ -85,6 +87,7 @@ void M_AQueue(){
             case 8: TraverseAQueue(Q, &APrint); break;
             default: printf("ERROR"); return;
         }
+        stop();
     }
 }
 
@@ -97,6 +100,7 @@ void M_LQueue(){
     InitLQueue(Q);
 
     for(;;){
+        stop();
         system("clear");
         printf("implementation of queue");
         printf("\n------------------------\n");
@@ -147,4 +151,9 @@ void M_LQueue(){
             default: printf("ERROR"); return;
         }
     }
+}
+
+void stop(){
+    printf("press any key to continue\n");
+    getchar();
 }
