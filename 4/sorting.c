@@ -141,16 +141,23 @@ void CountSort(long arr[], long n){
 
 
 void RadixCounting(long arr[], long n, int exp){
-    int curr, count[10] = {0} ;
+    long buffer[n]; 
+    long curr, count[10] = {0} ;
     
     //store the occurences
     for(curr = 0; curr < n; curr++)
         count[(arr[curr] / exp)%10]++;
+    
+    for(curr = 1; curr < 10; curr++)
+        count[curr] += count[curr-1];
 
-    long i = 0;
-    for(curr = 0; curr <= 10; curr++)
-        for(long num = 1; num <= count[curr]; num++)
-            arr[i++] = curr;
+    for(curr = 0; curr < n; curr++){
+        buffer[count[(arr[curr]/exp)%10]-1] = arr[curr];
+        count[(arr[curr]/exp)%10]--;
+    }
+
+    for(curr = 0; curr < n; curr++)
+        arr[curr] = buffer[curr];
 
 }
 

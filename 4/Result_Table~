@@ -1,0 +1,23 @@
+Result under 20w
+InsertSort	76413ms
+MergeSort	1842ms
+Qsort	1394ms
+Qsort_Recursion	1402ms
+CountSort	8605ms
+RadixCountSort	2671ms
+
+Results under 5w
+InsertSort	1867409ms
+MergeSort	10662ms
+Qsort	8463ms
+Qsort_Recursion	8088ms
+CountSort	9986ms
+RadixCountSort	14747ms
+
+Results under 10w
+InsertSort	29955579ms
+MergeSort	51711ms
+Qsort	40235ms
+Qsort_Recursion	37136ms
+CountSort	13383ms
+RadixCountSort	52073ms

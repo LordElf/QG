@@ -14,7 +14,7 @@ int main(){
     long BUFFER[200000];
     FILE *fp;
     fp = fopen("Result_Table", "w");
-    fputs("Result under 1w\n", fp);
+    fputs("Result under 20w\n", fp);
     fclose(fp);
     //now test these sorts with 10,000 integers
     CreateData(10000, "1w");
@@ -112,7 +112,7 @@ int main(){
 
     //now is 200,000
     fp = fopen("Result_Table", "a");
-    fputs("\nResults under 20w\n", fp);
+    fputs("\nResults under 10w\n", fp);
     fclose(fp);
 
     CreateData(200000, "20w");
